@@ -21,14 +21,19 @@ class Home extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
         child: Column(
           children: [
+
+
+
+
+
+
+
             Expanded(
               flex: 1,
               child: Container(
                 alignment: Alignment.center,
                 child: DefaultTextStyle(
-                  style: const TextStyle(
-                    fontSize: 40.0,
-                  ),
+                  style: const TextStyle(fontSize: 40.0, fontFamily: 'VT323'),
                   child: AnimatedTextKit(
                     animatedTexts: [
                       WavyAnimatedText('To the G'),
@@ -52,7 +57,10 @@ class Home extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, Play.id);
                     },
-                    child: const Text('해볼까예?'),
+                    child: const Text(
+                      'Do you want play?',
+                      style: TextStyle(fontFamily: 'VT323'),
+                    ),
                   ),
                 ],
               ),

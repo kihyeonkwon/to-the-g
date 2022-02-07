@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
 class Play extends StatefulWidget {
@@ -30,6 +31,12 @@ class _PlayState extends State<Play> {
 
   @override
   Widget build(BuildContext context) {
+    _uploadData() async {
+      DocumentReference documentReference =
+          FirebaseFirestore.instance.collection('scores').doc();
+      documentReference.set({'score': 6767867});
+    }
+
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -39,7 +46,10 @@ class _PlayState extends State<Play> {
                 flex: 1,
                 child: Container(
                     alignment: Alignment.center,
-                    child: Text('Your score is $score'))),
+                    child: Text(
+                      '$score',
+                      style: TextStyle(fontFamily: 'VT323'),
+                    ))),
             Expanded(
                 flex: 1,
                 child: GestureDetector(
@@ -47,7 +57,15 @@ class _PlayState extends State<Play> {
                     onPanEnd: handleTapUp,
                     child: Container(
                       color: Colors.grey,
-                    )))
+                    ))),
+            Expanded(
+              flex: 1,
+              child: ElevatedButton(
+                  onPressed: () {
+                    _uploadData();
+                  },
+                  child: Text('upload data')),
+            )
           ],
         ),
       ),
